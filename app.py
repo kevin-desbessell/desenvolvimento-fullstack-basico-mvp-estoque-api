@@ -26,21 +26,11 @@ info = Info(
 app = OpenAPI(__name__, info=info)
 # Permite que o frontend se comunique com a API tanto via Live Server
 # quanto abrindo o arquivo index.html diretamente no navegador.
-CORS(app, supports_credentials=False)
+CORS(app)
 
 @app.after_request
 def apply_cors_headers(response):
-    # Ajusta manualmente os cabeçalhos CORS para suportar origens locais,
-    # incluindo o caso em que o frontend é aberto diretamente via file://.
-    origin = request.headers.get("Origin")
-
-    if origin == "null":
-        response.headers["Access-Control-Allow-Origin"] = "null"
-    elif origin:
-        response.headers["Access-Control-Allow-Origin"] = origin
-    else:
-        response.headers["Access-Control-Allow-Origin"] = "*"
-
+    response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
     response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
     return response
