@@ -336,6 +336,8 @@ Este backend foi estruturado com foco em:
 - o **frontend** deve ficar em um repositório separado
 - o banco e os logs são gerados automaticamente ao executar a aplicação
 - a documentação Swagger já permite testar todas as rotas sem necessidade de ferramentas externas
+- a API foi configurada com CORS para permitir a comunicação com o frontend local
+- o frontend pode ser aberto diretamente pelo arquivo `index.html` ou por um servidor local como Live Server
 
 ---
 
